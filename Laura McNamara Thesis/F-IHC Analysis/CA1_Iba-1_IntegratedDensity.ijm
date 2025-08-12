@@ -1,0 +1,17 @@
+Roi.setPosition(1);
+roiManager("Add");
+run("Split Channels");
+selectImage("C1-Annotation (CA1_sampling)");
+close();
+selectImage("C2-Annotation (CA1_sampling)");
+close();
+selectImage("C3-Annotation (CA1_sampling)");
+close();
+selectImage("C4-Annotation (CA1_sampling)");
+run("Subtract Background...", "rolling=20");
+setAutoThreshold("Default no-reset");
+//run("Threshold...");
+setThreshold(2000, 65535, "raw");
+roiManager("Select", 0);
+run("Set Measurements...", "area mean min integrated limit redirect=None decimal=3");
+run("Measure");
