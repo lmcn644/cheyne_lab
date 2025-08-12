@@ -1,0 +1,59 @@
+{
+  "pixel_classifier_type": "OpenCVPixelClassifier",
+  "metadata": {
+    "inputPadding": 0,
+    "inputResolution": {
+      "pixelWidth": {
+        "value": 0.6499129277769212,
+        "unit": "µm"
+      },
+      "pixelHeight": {
+        "value": 0.6499111428244287,
+        "unit": "µm"
+      },
+      "zSpacing": {
+        "value": 1.0,
+        "unit": "z-slice"
+      },
+      "timeUnit": "SECONDS",
+      "timepoints": []
+    },
+    "inputWidth": 512,
+    "inputHeight": 512,
+    "inputNumChannels": 3,
+    "outputType": "CLASSIFICATION",
+    "outputChannels": [],
+    "classificationLabels": {
+      "0": {
+        "name": "Ignore*",
+        "color": [
+          180,
+          180,
+          180
+        ]
+      },
+      "1": {
+        "name": "Overall_AB_Plaques",
+        "color": [
+          137,
+          154,
+          81
+        ]
+      }
+    }
+  },
+  "op": {
+    "type": "data.op.channels",
+    "colorTransforms": [
+      {
+        "channelName": "Cy3"
+      }
+    ],
+    "op": {
+      "type": "op.threshold.constant",
+      "thresholds": [
+        3298.0
+      ]
+    }
+  }
+}
