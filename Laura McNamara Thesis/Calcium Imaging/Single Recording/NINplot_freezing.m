@@ -13,12 +13,13 @@ for iAnimal = 1:nAnimals;
     animal=animals(iAnimal).name;
     folder=animal;
     cd(folder)
-    load locomotion %Entire workspace generated in NINlocomotion.m
+    load behave.mat
+    nLocs = size(behave,1);
     
-    filelist=dir('*Freezing_output.xlsx');
+    filelist=dir('*Freezing_output_NEW.xlsx');
     d1 = readtable(filelist(1).name, 'readvariablenames', false);
     % get co-ordinates
-    num=d1(1:end,4);
+    num=d1(1:end,2);
     num=num{:,:};
 
     if size(num,1)<nLocs;  %extends freezing array to fit with behave.mat.

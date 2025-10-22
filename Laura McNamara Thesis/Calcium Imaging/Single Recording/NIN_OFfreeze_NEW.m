@@ -30,11 +30,11 @@ for iAnimal = 1:nAnimals;
     load NeuKeep
     
     %% Freezing
-    filelist=dir('*Freezing_output.xlsx');
+    filelist=dir('*Freezing_output_NEW.xlsx');
     
     d1 = readtable(filelist(1).name, 'readvariablenames', false);
     
-    num=d1(1:end,4);
+    num=d1(1:end,2);
     num=num{:,:};
     
     if size(num,1)<size(behave(:,1),1)
@@ -44,7 +44,7 @@ for iAnimal = 1:nAnimals;
         num(size(behave(:,1),1)+1:end,:)=[];
     end
 
-    ind=num(:,:)==100; %Index for when animal is freezing
+    ind=num(:,:)==1; %Index for when animal is freezing
     quadrant=[];
     quadrant(:,1)=ind; % c1 = animal is freezing
     quadrant(:,2)=~ind; % c2 = animal is in motion
