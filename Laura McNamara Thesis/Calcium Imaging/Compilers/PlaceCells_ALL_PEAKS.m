@@ -23,11 +23,11 @@ for iAnimal = 1:nAnimals;
     animal=animals(iAnimal).name;
     folder=animal;
     cd(folder)
-    PCCheck = exist("PlaceCells.mat");
+    PCCheck = isfile("PlaceCells.mat");
 
-    if PCCheck == 2
+    if PCCheck == 1
         load PlaceCells
-        ind = PlaceCells(:,4)>= 0.3;  % Ensures place cells all provide at least 0.3 bits/spike of spatial information
+        ind = PlaceCells(:,4)>= 0.5;  % Ensures place cells all provide at least 0.5 bits/spike of spatial information
         PlaceCells = PlaceCells(ind,:);
         PCCheck = ~isempty(PlaceCells);
 
@@ -39,7 +39,7 @@ for iAnimal = 1:nAnimals;
             load nFrames
             load nCells
             load final_peakdata
-            
+
             %% Place Cell index
             PCind = [];
 

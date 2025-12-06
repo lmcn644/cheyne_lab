@@ -32,9 +32,9 @@ for iAnimal = 1:nAnimals;
     load nCells
     load duration
 
-    PCCheck = exist('NoPlaceCells.mat');
+    PCCheck = isfile('NoPlaceCells.mat');
 
-    if PCCheck == 2
+    if PCCheck == 1
         PlctFreq = [];
         PlctPart = [];
     else
@@ -44,6 +44,12 @@ for iAnimal = 1:nAnimals;
             PlctFreq = [];
             PlctPart = [];
         else
+            ind = PlaceCells(:,4)>= 0.5;  % Ensures place cells all provide at least 0.5 bits/spike of spatial information
+            PlaceCells = PlaceCells(ind,:);
+            PCCheck3 = ~isempty(PlaceCells);
+
+            if PCCheck3 == 1
+
             PC = PlaceCells(:,1)';
             PCn = size(PC,2);  %number of place cells
 
@@ -85,6 +91,12 @@ for iAnimal = 1:nAnimals;
 
               PlctFreq = [];
               PlctPart = [];
+
+            end
+
+            else
+                PlctFreq = [];
+                PlctPart = [];
 
             end
         end
