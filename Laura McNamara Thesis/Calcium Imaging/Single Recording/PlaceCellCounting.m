@@ -23,9 +23,9 @@ for iAnimal = 1:nAnimals;
 
     load NeuKeep
     PlaceCellTally(iAnimal,1) = size(NeuKeep,2); %Total number of cells the animal has
-    PCCheck = exist('NoPlaceCells.mat');
+    PCCheck = isfile('NoPlaceCells.mat');
 
-    if PCCheck == 2
+    if PCCheck == 1
         PlaceCellTally(iAnimal,2) = 0;
     else
         load PlaceCells
@@ -33,7 +33,16 @@ for iAnimal = 1:nAnimals;
         if PCCheck2 == 1
             PlaceCellTally(iAnimal,2) = 0;
         else
-            PlaceCellTally(iAnimal,2) = size(PlaceCells,1); %Total number of place cells the animal has
+            ind = PlaceCells(:,4)>= 0.5;  % Ensures place cells all provide at least 0.5 bits/spike of spatial information
+            PlaceCells = PlaceCells(ind,:);
+            PCCheck3 = ~isempty(PlaceCells);
+
+            if PCCheck3 == 1
+                PlaceCellTally(iAnimal,2) = size(PlaceCells,1); %Total number of place cells the animal has
+
+            else
+                PlaceCellTally(iAnimal,2) = 0;
+            end
         end
     end
 
